@@ -1,5 +1,6 @@
 import express from 'express';
 import {db} from '../config/db.config';
+import {router} from "../routes/route";
 
 const app = express();
 
@@ -8,7 +9,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // routes
-
+app.use('/', router);
 // define port
 const port = process.env.PORT || 8000;
 
