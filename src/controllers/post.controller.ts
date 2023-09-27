@@ -8,17 +8,10 @@ class PostController {
             title: req.body.title,
             author: req.body.author,
             description: req.body.description
-        }
+        };
 
-        const {error, value} = PostschemaValidation.validate(data);
+        const post = await PostService.createPost(data);
 
-        if (error) {
-            res.status(400).send({
-                message: error.message
-            });
-        }
-
-        const post = await PostService.createPost(value);
         res.status(201).send(post);
     }
 }
